@@ -2,12 +2,18 @@ package br.com.desafio_ibm.controller;
 
 import br.com.desafio_ibm.dto.CadastroClienteDto;
 import br.com.desafio_ibm.dto.ViewClienteDto;
-import br.com.desafio_ibm.dto.ViewContaDto;
-import br.com.desafio_ibm.model.entities.ClienteEntity;
+
 import br.com.desafio_ibm.service.ClienteService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Pageable;
+
+import  java.net.URI;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/cliente")
@@ -16,21 +22,21 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping
-    public ResponseEntity<String> listarClientes() {
-        System.out.println("GET FEITO");
-        return ResponseEntity.ok("new ViewClienteDto()");
+    public ResponseEntity<Page<ViewClienteDto>> listarClientes(@PageableDefault(size=15, sort= "nome") Pageable paginacao) {
+
+        return ResponseEntity.ok(this.clienteService.listarClientesPaginado(paginacao));
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ViewClienteDto> detalharCliente(@PathVariable long id) {
-        ClienteEntity c = this.clienteService.detalharCliente(id);
-        ViewContaDto contaDto = new ViewContaDto(c.getConta().getId(), c.getConta().getNumeroConta(), c.getConta().getSaldo(), c.getConta().getCreditoDisponivel());
-        ViewClienteDto clienteDto = new ViewClienteDto(c.getId(), c.getNome(), c.getEnderecoEmail(), contaDto);
+        ViewClienteDto clienteDto = this.clienteService.detalharCliente(id);
         return ResponseEntity.ok(clienteDto);
     }
     @PostMapping
-    public ResponseEntity<String> cadastrarCliente(@RequestBody CadastroClienteDto cadastroClienteDto) {
-        this.clienteService.cadastrarCliente(cadastroClienteDto);
-        return ResponseEntity.ok("new ViewClienteDto()");
+    public ResponseEntity<ViewClienteDto> cadastrarCliente(@RequestBody @Valid CadastroClienteDto cadastroClienteDto, UriComponentsBuilder uriBuilder) {
+        ViewClienteDto clienteCadastrado = this.clienteService.cadastrarCliente(cadastroClienteDto);
+        URI uri = uriBuilder.path("/cliente/{id}").buildAndExpand(clienteCadastrado.id()).toUri();
+
+        return ResponseEntity.created(uri).body(clienteCadastrado);
     }
 }
