@@ -1,4 +1,9 @@
 package br.com.desafio_ibm.dto;
 
-public class ViewClienteDto {
+public record ViewClienteDto(
+        long id,
+        String nome,
+        String email,
+        ViewContaDto contaBancaria
+) {
 }
