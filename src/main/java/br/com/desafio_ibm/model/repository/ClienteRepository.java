@@ -12,6 +12,7 @@ public interface ClienteRepository extends JpaRepository<ClienteEntity, Long> {
 
     boolean existsByEnderecoEmail(String email);
 
+    @Override
     Page<ClienteEntity> findAll(Pageable paginacao);
 
 }

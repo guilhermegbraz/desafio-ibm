@@ -4,7 +4,6 @@ import br.com.desafio_ibm.dto.ViewContaDto;
 import br.com.desafio_ibm.model.entities.ClienteEntity;
 import br.com.desafio_ibm.model.entities.ContaEntity;
 import br.com.desafio_ibm.model.repository.ContaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Random;
 
