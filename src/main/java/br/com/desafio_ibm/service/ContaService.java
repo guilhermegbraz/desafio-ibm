@@ -1,5 +1,6 @@
 package br.com.desafio_ibm.service;
 
+import br.com.desafio_ibm.dto.ViewContaDto;
 import br.com.desafio_ibm.model.entities.ClienteEntity;
 import br.com.desafio_ibm.model.entities.ContaEntity;
 import br.com.desafio_ibm.model.repository.ContaRepository;
@@ -9,14 +10,30 @@ import java.util.Random;
 
 @Service
 public class ContaService {
-    @Autowired
-    private ContaRepository contaRepository;
-    public void criarContaParaCliente(ClienteEntity clienteEntity) {
+    private final ContaRepository contaRepository;
+
+    public ContaService(ContaRepository contaRepository) {
+        this.contaRepository = contaRepository;
+    }
+
+    public ViewContaDto criarContaParaCliente(ClienteEntity clienteEntity, String numeroConta) {
         ContaEntity contaBancaria = new ContaEntity();
-        contaBancaria.setNumeroConta(gerarNumeroAConta());
+        contaBancaria.setNumeroConta(numeroConta);
         contaBancaria.setCliente(clienteEntity);
         this.contaRepository.save(contaBancaria);
-        System.out.println(contaBancaria);
+
+        return new ViewContaDto(contaBancaria);
+    }
+
+    public ViewContaDto criarContaParaCliente(ClienteEntity clienteEntity) {
+        ContaEntity contaBancaria = new ContaEntity();
+        String numeroConta = gerarNumeroAConta();
+        while(this.contaRepository.existsByNumeroConta(numeroConta)) numeroConta = gerarNumeroAConta();
+        contaBancaria.setNumeroConta(numeroConta);
+        contaBancaria.setCliente(clienteEntity);
+        this.contaRepository.save(contaBancaria);
+
+        return new ViewContaDto(contaBancaria);
     }
 
     private static String gerarNumeroAConta() {
