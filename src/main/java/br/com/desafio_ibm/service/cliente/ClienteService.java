@@ -1,10 +1,12 @@
-package br.com.desafio_ibm.service;
+package br.com.desafio_ibm.service.cliente;
 
 import br.com.desafio_ibm.dto.CadastroClienteDto;
 import br.com.desafio_ibm.dto.ViewClienteDto;
 import br.com.desafio_ibm.dto.ViewContaDto;
 import br.com.desafio_ibm.model.entities.ClienteEntity;
 import br.com.desafio_ibm.model.repository.ClienteRepository;
+import br.com.desafio_ibm.service.ContaService;
+import br.com.desafio_ibm.service.cliente.validacao.ValidacoesCliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;

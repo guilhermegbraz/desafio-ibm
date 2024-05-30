@@ -3,7 +3,7 @@ package br.com.desafio_ibm.controller;
 import br.com.desafio_ibm.dto.CadastroClienteDto;
 import br.com.desafio_ibm.dto.ViewClienteDto;
 
-import br.com.desafio_ibm.service.ClienteService;
+import br.com.desafio_ibm.service.cliente.ClienteService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
