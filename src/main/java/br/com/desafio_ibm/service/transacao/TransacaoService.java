@@ -8,6 +8,8 @@ import br.com.desafio_ibm.model.entities.TransacaoEntity;
 import br.com.desafio_ibm.model.repository.ContaRepository;
 import br.com.desafio_ibm.model.repository.TransacaoRepository;
 import br.com.desafio_ibm.service.transacao.validacao.ValidadorTransacao;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,5 +54,9 @@ public class TransacaoService {
 
     public ViewTransacaoDto detalharTransacao(long id) {
         return new ViewTransacaoDto(this.transacaoRepository.getReferenceById(id));
+    }
+
+    public Page<ViewTransacaoDto> listarTransacaoContasPaginado(Long id, Pageable paginacao) {
+        return this.transacaoRepository.findAllByContaId(id, paginacao).map(ViewTransacaoDto::new);
     }
 }
