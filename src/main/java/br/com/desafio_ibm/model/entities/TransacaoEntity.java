@@ -28,7 +28,7 @@ public class TransacaoEntity {
     @JoinColumn(name = "id_conta", nullable = false)
     private ContaEntity conta;
 
-    public TransacaoEntity(TipoTransacao tipo, BigDecimal valor, String descricao, ContaEntity conta) {
+    public TransacaoEntity(TipoTransacao tipo, BigDecimal valor, ContaEntity conta) {
         this.tipo = tipo;
         this.valor = valor;
         this.descricao = descricao;

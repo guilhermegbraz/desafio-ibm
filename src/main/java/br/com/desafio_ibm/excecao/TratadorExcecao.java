@@ -1,5 +1,6 @@
 package br.com.desafio_ibm.excecao;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -26,5 +27,10 @@ public class TratadorExcecao {
     @ExceptionHandler(RegraNegocioClienteException.class)
     public ResponseEntity<String> tratarErroRegraNegocioCliente(RegraNegocioClienteException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<String> tratarErro500(Exception ex) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro: " +ex.getLocalizedMessage());
     }
 }
