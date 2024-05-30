@@ -33,7 +33,8 @@ public class ClienteController {
         return ResponseEntity.ok(clienteDto);
     }
     @PostMapping
-    public ResponseEntity<ViewClienteDto> cadastrarCliente(@RequestBody @Valid CadastroClienteDto cadastroClienteDto, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity<ViewClienteDto> cadastrarCliente(@RequestBody @Valid CadastroClienteDto cadastroClienteDto,
+                                                           UriComponentsBuilder uriBuilder) {
         ViewClienteDto clienteCadastrado = this.clienteService.cadastrarCliente(cadastroClienteDto);
         URI uri = uriBuilder.path("/cliente/{id}").buildAndExpand(clienteCadastrado.id()).toUri();
 

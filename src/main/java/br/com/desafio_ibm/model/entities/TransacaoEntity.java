@@ -31,7 +31,6 @@ public class TransacaoEntity {
     public TransacaoEntity(TipoTransacao tipo, BigDecimal valor, ContaEntity conta) {
         this.tipo = tipo;
         this.valor = valor;
-        this.descricao = descricao;
         this.conta = conta;
     }
 }
