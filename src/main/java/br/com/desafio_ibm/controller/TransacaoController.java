@@ -12,6 +12,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/transacao")
+@CrossOrigin()
 public class TransacaoController {
 
     private final TransacaoService transacaoService;

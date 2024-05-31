@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/cliente")
+@CrossOrigin()
 public class ClienteController {
     @Autowired
     private ClienteService clienteService;
