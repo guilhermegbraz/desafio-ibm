@@ -44,7 +44,7 @@ public class TransacaoService {
 
         TransacaoEntity transacaoEntity =  new TransacaoEntity(tipo, cadastroTransacaoDto.valor(), conta);
         transacaoEntity.setData(LocalDateTime.now());
-        if(cadastroTransacaoDto.descricao() != null && cadastroTransacaoDto.descricao().isBlank())
+        if(cadastroTransacaoDto.descricao() != null && !cadastroTransacaoDto.descricao().isBlank())
             transacaoEntity.setDescricao(cadastroTransacaoDto.descricao());
         this.transacaoRepository.save(transacaoEntity);
         this.contaRepository.save(conta);

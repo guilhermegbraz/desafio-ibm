@@ -29,7 +29,7 @@ public class ClienteService {
         validacoesClientes.forEach(validacao -> validacao.validar(cadastroClienteDto));
         ClienteEntity clienteEntity = cadastroClienteDto.toClienteEntity();
         this.clienteRepository.save(clienteEntity);
-        ViewContaDto contaDto = (cadastroClienteDto.numeroConta() == null) ?
+        ViewContaDto contaDto = (cadastroClienteDto.numeroConta() == null || cadastroClienteDto.numeroConta().isBlank()) ?
                 this.contaService.criarContaParaCliente(clienteEntity)
                 : this.contaService.criarContaParaCliente(clienteEntity, cadastroClienteDto.numeroConta());
 

@@ -27,7 +27,7 @@ public class ContaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ViewContaDto> detalharCliente(@PathVariable long id) {
+    public ResponseEntity<ViewContaDto> detalharConta(@PathVariable long id) {
         ViewContaDto contaDto = this.contaService.detalharConta(id);
         return ResponseEntity.ok(contaDto);
     }

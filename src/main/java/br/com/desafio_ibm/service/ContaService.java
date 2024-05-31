@@ -1,5 +1,6 @@
 package br.com.desafio_ibm.service;
 
+import br.com.desafio_ibm.dto.ViewClienteDto;
 import br.com.desafio_ibm.dto.ViewContaDto;
 import br.com.desafio_ibm.dto.ViewTransacaoDto;
 import br.com.desafio_ibm.excecao.RegraNegocioClienteException;
@@ -57,7 +58,8 @@ public class ContaService {
     }
 
     public ViewContaDto detalharConta(long id) {
-        return new ViewContaDto(this.contaRepository.getReferenceById(id));
+        ContaEntity conta= this.contaRepository.getReferenceById(id);
+        return new ViewContaDto(conta, new ViewClienteDto(conta.getCliente(), null));
     }
 
     public Page<ViewTransacaoDto> listarTransacaoContasPaginado(long id, Pageable paginacao) {

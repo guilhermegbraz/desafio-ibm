@@ -67,8 +67,8 @@ SELECT
     IF(RAND() < 0.5, 'CREDITO', 'DEBITO') AS tipo,
     ROUND((RAND() * 400) - 200, 2) AS valor,
     CASE
-        WHEN RAND() < 0.5 THEN CONCAT('Crédito de R$', ROUND((RAND() * 400) - 200, 2), ' na conta')
-        ELSE CONCAT('Débito de R$', ROUND((RAND() * 400) - 200, 2), ' na conta')
+        WHEN RAND() < 0.5 THEN 'Pagamento de boleto'
+        ELSE 'Compras para casa'
         END AS descricao,
     NOW() - INTERVAL FLOOR(RAND() * 365) DAY
 FROM
