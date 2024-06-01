@@ -21,11 +21,12 @@ public class TratadorExcecao {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<DadosErroValidacao>> tratarErro400(MethodArgumentNotValidException ex) {
         List<FieldError> erros = ex.getFieldErrors();
+
         return ResponseEntity.badRequest().body(erros.stream().map(DadosErroValidacao::new).toList());
     }
 
-    @ExceptionHandler(RegraNegocioClienteException.class)
-    public ResponseEntity<String> tratarErroRegraNegocioCliente(RegraNegocioClienteException ex) {
+    @ExceptionHandler(RegraNegocioException.class)
+    public ResponseEntity<String> tratarErroRegraNegocioCliente(RegraNegocioException ex) {
         return ResponseEntity.badRequest().body(ex.getMessage());
     }
 

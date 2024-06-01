@@ -1,6 +1,5 @@
-package br.com.desafio_ibm.model.entities;
+package br.com.desafio_ibm.domain.entities;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

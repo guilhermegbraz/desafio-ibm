@@ -1,4 +1,4 @@
-package br.com.desafio_ibm.service.cliente.validacao;
+package br.com.desafio_ibm.domain.usecase.cliente.validacao;
 
 import br.com.desafio_ibm.dto.CadastroClienteDto;
 

@@ -1,7 +1,7 @@
 package br.com.desafio_ibm.dto;
 
-import br.com.desafio_ibm.model.entities.TipoTransacao;
-import br.com.desafio_ibm.model.entities.TransacaoEntity;
+import br.com.desafio_ibm.domain.entities.TipoTransacao;
+import br.com.desafio_ibm.domain.entities.TransacaoEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

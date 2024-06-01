@@ -1,7 +1,7 @@
-package br.com.desafio_ibm.service.transacao.validacao;
+package br.com.desafio_ibm.domain.usecase.transacao.validacao;
 
 import br.com.desafio_ibm.dto.CadastroTransacaoDto;
-import br.com.desafio_ibm.excecao.RegraNegocioClienteException;
+import br.com.desafio_ibm.excecao.RegraNegocioException;
 import org.springframework.stereotype.Component;
 import org.springframework.core.annotation.Order;
 
@@ -18,7 +18,7 @@ public class ValidarTipoTransacao implements ValidadorTransacao{
                 cadastroTransacaoDto.tipo().trim().isEmpty() ||
                 !this.TIPOS_VALIDOS.contains(cadastroTransacaoDto.tipo().toUpperCase())
         )
-                throw new RegraNegocioClienteException("Tipo de transação inválido, os tipos válidos " +
+                throw new RegraNegocioException("Tipo de transação inválido, os tipos válidos " +
                         "são \"CREDITO\" ou \"DEBITO\". Envie na requisição sem acentos -- " + cadastroTransacaoDto.tipo());
 
     }

@@ -1,6 +1,6 @@
-package br.com.desafio_ibm.model.repository;
+package br.com.desafio_ibm.domain.repository;
 
-import br.com.desafio_ibm.model.entities.ClienteEntity;
+import br.com.desafio_ibm.domain.entities.ClienteEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

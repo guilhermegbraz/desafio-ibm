@@ -1,6 +1,6 @@
 package br.com.desafio_ibm.dto;
 
-import br.com.desafio_ibm.model.entities.ContaEntity;
+import br.com.desafio_ibm.domain.entities.ContaEntity;
 
 import java.math.BigDecimal;
 

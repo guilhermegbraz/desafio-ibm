@@ -1,31 +1,28 @@
-package br.com.desafio_ibm.service.transacao;
+package br.com.desafio_ibm.domain.usecase.transacao;
 
+import br.com.desafio_ibm.domain.repository.TransacaoRepository;
+import br.com.desafio_ibm.domain.usecase.transacao.validacao.ValidadorTransacao;
 import br.com.desafio_ibm.dto.CadastroTransacaoDto;
 import br.com.desafio_ibm.dto.ViewTransacaoDto;
-import br.com.desafio_ibm.model.entities.ContaEntity;
-import br.com.desafio_ibm.model.entities.TipoTransacao;
-import br.com.desafio_ibm.model.entities.TransacaoEntity;
-import br.com.desafio_ibm.model.repository.ContaRepository;
-import br.com.desafio_ibm.model.repository.TransacaoRepository;
-import br.com.desafio_ibm.service.transacao.validacao.ValidadorTransacao;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import br.com.desafio_ibm.domain.entities.ContaEntity;
+import br.com.desafio_ibm.domain.entities.TipoTransacao;
+import br.com.desafio_ibm.domain.entities.TransacaoEntity;
+import br.com.desafio_ibm.domain.repository.ContaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
-public class TransacaoService {
+public class CadastrarTransacaoUsecase {
     private final TransacaoRepository transacaoRepository;
-    private final List<ValidadorTransacao> validacoesTransacao;
     private final ContaRepository contaRepository;
+    private final List<ValidadorTransacao> validacoesTransacao;
 
-    public TransacaoService(TransacaoRepository transacaoRepository, List<ValidadorTransacao> validacoesTransacao, ContaRepository contaRepository) {
+    public CadastrarTransacaoUsecase(TransacaoRepository transacaoRepository, ContaRepository contaRepository, List<ValidadorTransacao> validadorTransacaos) {
         this.transacaoRepository = transacaoRepository;
-        this.validacoesTransacao = validacoesTransacao;
         this.contaRepository = contaRepository;
+        this.validacoesTransacao = validadorTransacaos;
     }
 
     @Transactional
@@ -50,13 +47,5 @@ public class TransacaoService {
         this.contaRepository.save(conta);
 
         return new ViewTransacaoDto(transacaoEntity);
-    }
-
-    public ViewTransacaoDto detalharTransacao(long id) {
-        return new ViewTransacaoDto(this.transacaoRepository.getReferenceById(id));
-    }
-
-    public Page<ViewTransacaoDto> listarTransacaoContasPaginado(Long id, Pageable paginacao) {
-        return this.transacaoRepository.findAllByContaId(id, paginacao).map(ViewTransacaoDto::new);
     }
 }

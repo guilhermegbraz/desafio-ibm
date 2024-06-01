@@ -1,9 +1,9 @@
-package br.com.desafio_ibm.service.transacao.validacao;
+package br.com.desafio_ibm.domain.usecase.transacao.validacao;
 
 import br.com.desafio_ibm.dto.CadastroTransacaoDto;
-import br.com.desafio_ibm.excecao.RegraNegocioClienteException;
-import br.com.desafio_ibm.model.entities.ContaEntity;
-import br.com.desafio_ibm.model.repository.ContaRepository;
+import br.com.desafio_ibm.excecao.RegraNegocioException;
+import br.com.desafio_ibm.domain.entities.ContaEntity;
+import br.com.desafio_ibm.domain.repository.ContaRepository;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -25,7 +25,7 @@ public class ValidadorValorTransacao implements ValidadorTransacao{
             else valorComparacao = contaEntity.getSaldo();
 
             if(cadastroTransacaoDto.valor().abs().compareTo(valorComparacao) > 0)
-                throw new RegraNegocioClienteException(cadastroTransacaoDto.tipo() + " insuficiente");
+                throw new RegraNegocioException(cadastroTransacaoDto.tipo() + " insuficiente");
         }
 
 

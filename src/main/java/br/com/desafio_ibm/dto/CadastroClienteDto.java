@@ -1,15 +1,17 @@
 package br.com.desafio_ibm.dto;
 
-import br.com.desafio_ibm.model.entities.ClienteEntity;
+import br.com.desafio_ibm.domain.entities.ClienteEntity;
 import jakarta.annotation.Nullable;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
+import org.springframework.beans.factory.annotation.Value;
 
 public record CadastroClienteDto(
         @NotBlank(message = "O atributo \"Nome\" é obrigatório")
         @Size(min= 1, max=100, message = "Nome deve possuir entre 1 e 100 caracteres")
         String nome,
+        @NotNull
+
+        @Min(0)
         int idade,
         @Email(message = "O e-mail deve ser válido")
         @NotBlank(message = "O atributo \"E-mail\" é obrigatório")

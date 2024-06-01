@@ -1,6 +1,6 @@
-package br.com.desafio_ibm.model.repository;
+package br.com.desafio_ibm.domain.repository;
 
-import br.com.desafio_ibm.model.entities.TransacaoEntity;
+import br.com.desafio_ibm.domain.entities.TransacaoEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

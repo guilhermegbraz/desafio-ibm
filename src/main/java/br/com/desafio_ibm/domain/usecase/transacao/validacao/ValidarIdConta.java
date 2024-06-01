@@ -1,8 +1,8 @@
-package br.com.desafio_ibm.service.transacao.validacao;
+package br.com.desafio_ibm.domain.usecase.transacao.validacao;
 
 import br.com.desafio_ibm.dto.CadastroTransacaoDto;
-import br.com.desafio_ibm.excecao.RegraNegocioClienteException;
-import br.com.desafio_ibm.model.repository.ContaRepository;
+import br.com.desafio_ibm.excecao.RegraNegocioException;
+import br.com.desafio_ibm.domain.repository.ContaRepository;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class ValidarIdConta implements ValidadorTransacao{
     public void validar(CadastroTransacaoDto cadastroTransacaoDto) {
         if(cadastroTransacaoDto.idConta() == null
                 || !this.contaRepository.existsById(cadastroTransacaoDto.idConta())) {
-            throw new RegraNegocioClienteException("Não foi encontrado conta com este id." +
+            throw new RegraNegocioException("Não foi encontrado conta com este id." +
                     " Envie o id de uma conta existente para realizar a transação");
         }
     }

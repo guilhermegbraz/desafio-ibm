@@ -1,4 +1,4 @@
-package br.com.desafio_ibm.model.entities;
+package br.com.desafio_ibm.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
